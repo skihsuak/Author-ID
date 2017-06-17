@@ -1,4 +1,22 @@
 1. Normalize data (get sentences with markers and all lowercase)
-2. get word counts for all words and markers
-3. put stuff into hash tables
-4. calculate probabilities
+    a) make all words lowercase
+    b) most punctuation has been stripped (except for apostrophes)
+    c) <s> everywhere sentence begins, </s> everywhere sentences end
+    d) <abbr> for abbreviations
+    e) <number> for numbers
+    f) remove 'CHAPTER' texts
+    g) remove carriage returns
+    h) upload files into a 'Text_Normalized' folder on github
+2. get word counts for all words + markers
+    a) combine author's normalized files together
+    b) find total wordcounts for all authors
+    c) manually look through wordcounts and check for errors
+    d) create <unk> token
+    e) create some other statistics:
+          - number of words per author
+          - toal number of words (for all authors combined)
+    f) upload files into a 'Wordcounts' folder
+3. calculate probabilities
+    a) Take wordcounts and divide by (numAuthorWords + totalWords)
+4. put stuff into hash tables (or STL::maps)
+
