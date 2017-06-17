@@ -1,0 +1,46 @@
+shell scripts?
+
+readme file in directory
+
+delete header and afterward
+shell language
+
+make all characters lowercase
+remove double quotes (funny and normal)
+remove carriage returns
+remove ‘[,_()]’
+change dashes to spaces
+change \\n to spaces
+
+normalize (remove periods from mr, dr, etc)
+change 0-9 to <number>
+
+change ?!;:. to newlines
+remove whitespace lines
+replace beginning of a line with a token “<s>”
+replace end of line with token “</s>”
+
+unix commands: cat, grep, tr, more
+------
+read the file, every 10th line put into test file, everything else goes in training file
+naming scheme: have ordering for output in filename (run.01, run.02, etc.)
+data split (10/90 or 20/80)
+-------
+extract vocab - get vocab from author - make it one file
+get rid of blank line -> grep -v ‘^ *$’
+clean up apostrophes better?
+create token for unknown word
+-------
+
+
+
+
+
+
+tangent: optimize based on profiling - what the program/execution spends the most time on
+
+
+inversion rectification???????
+
+
+

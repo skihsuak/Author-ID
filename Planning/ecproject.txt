@@ -1,0 +1,11 @@
+// 1. Collect up all of the corpora - dickens-train.txt dickens-test.txt, austen-train.txt, etc.
+// 2. Set up N hash tables, 1 for each author
+// 3. When the program starts up, read ALL (*.txt) files and load them into EVERY hash table, but don't
+//    increment counts. (Basically means that every word is in every HashTable with a count of 1
+//    (That's your vocab. Also make sure that every hash table has the following special words (<s>, </s>, <unk>)
+// 4. NOW, process each author's training text, and stuff these words into THAT author's hash table, while
+//    incrementing the respective counts.
+// 4.1 Simultaneously, keep count of the total number of words stuffed into each table.
+// 5. After (e.g.) Dickens is done, scan the dickens_hash_table, divide every count by 
+//    (nWordsDickens + vocabSize)
+
