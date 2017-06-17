@@ -1,4 +1,4 @@
-1. Normalize data (get sentences with markers and all lowercase)
+1. **Normalize data (get sentences with markers and all lowercase)
     a) make all words lowercase
     b) most punctuation has been stripped (except for apostrophes)
     c) <s> everywhere sentence begins, </s> everywhere sentences end
@@ -13,10 +13,42 @@
     c) manually look through wordcounts and check for errors
     d) create <unk> token
     e) create some other statistics:
+          - number of unique words per author
+          - toal number of unique words (for all authors combined)
           - number of words per author
-          - toal number of words (for all authors combined)
+          - total number of words for all authors
     f) upload files into a 'Wordcounts' folder
 3. calculate probabilities
     a) Take wordcounts and divide by (numAuthorWords + totalWords)
 4. put stuff into hash tables (or STL::maps)
 
+
+Normalize Pt.1 --
+<**Normalize Data from above>
+
+Normalize Pt. 2 --
+1. 10 normalized files (5 Jane Austen, 5 from Dickens)
+2. Combine 5 Austen files together, Combine 5 Dickens files together (2 files - 1 for Dickens_train, 1 for Austen_train)
+3. Take every tenth line (remove it from Dickens_train/Austen_train) from each of these two files as training data (2 files - 1 (Dickens_Test), 1 (Austen_Test))
+4. Create a wordcount table for Dickens_train, Austen_train
+5. Create total wordcount table with D_T and A_T together. 
+    *(make these wordcount tables arrays/vectors of Word objects)
+    ** Word object -> constructor that takes a string name, int wordCount
+    ** two arrays/vectors: dickens_words, austen_words
+
+Hash Table --
+1. Create <word, probablity> pairs and insert into STL::map/hash table
+        -> iterate through dickens array -> calculate probability for each word in array
+        -> function: calculateprobality(Word word) -> calculates probability: log((count/totalcount)+1)
+        -> insert pair (word.getName, calculateprobability(word)) into hash table
+        -> two hashtables - Dickens_table, Austen_table contains pairs of words and their probabilities
+2. Create some sort of UI -> while loop that gets user's sentences
+        -> take the sentence, take the words and try to find them in your dickens_table, austen_table
+        -> if they are not in the table, assign value <unk> and look for that in table
+        -> if they are in the table, get probability of each sentence (addition of each word probability in sentence) for each author
+        -> whichever author has the highest probability, return author name.
+        
+
+
+Questions:
+1. Why have sentence tags in word count table?
