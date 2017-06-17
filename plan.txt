@@ -1,4 +1,0 @@
-1. Normalize data (get sentences with markers and all lowercase)
-2. get word counts for all words and markers
-3. put stuff into hash tables
-4. calculate probabilities
