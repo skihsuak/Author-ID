@@ -44,7 +44,7 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
       useCustomWorkingDirectory = "YES"
-      customWorkingDirectory = "/Users/ksankar/Desktop/SCHOOL/Q3/CS 2C/Author-ID/Texts/Texts_NotNormalized"
+      customWorkingDirectory = "/Users/ksankar/Desktop/SCHOOL/Q3/CS 2C/Author-ID/Texts/Texts_Normalized"
       buildConfiguration = "Debug"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"

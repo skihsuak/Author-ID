@@ -117,21 +117,125 @@ void replaceAll(string &str, string& from, string& to);
 //   return 0;
 //}
 
+//----------------------- generating normalized tables -----------------------
+//int main()
+//{
+////   //generate counts
+////   //normalize
+////   cout << "\'\"\\Aasdk;v123 fbe;ub ai;SJ D:FB U:WEOUFB?" << endl;
+////   cout << normalize("\'Aasdk;v123 fbe;ub ai;SJ D:FB U:WEOUFB?") << endl;
+//
+//   ofstream outputFile("CharlesDickens-TaleofTwoCitiesN.txt");
+//   ifstream ifs("CharlesDickens-TaleofTwoCities.txt");
+//   string content( (istreambuf_iterator<char>(ifs) ),
+//                   (istreambuf_iterator<char>()    ));
+//
+//   //cout << content << endl
+//   outputFile << normalize(content);
+//   outputFile.close();
+//   return 0;
+//}
+
 int main()
 {
-//   //generate counts
-//   //normalize
-//   cout << "\'\"\\Aasdk;v123 fbe;ub ai;SJ D:FB U:WEOUFB?" << endl;
-//   cout << normalize("\'Aasdk;v123 fbe;ub ai;SJ D:FB U:WEOUFB?") << endl;
+   map<string, double> austenHash;
+   map<string, double> dickensHash;
+   map<string, double> finalHash;
+   ifstream dickens("DickensCorpus.txt");
+   ifstream austen("JaneAustenCorpus.txt");
 
-   ofstream outputFile("CharlesDickens-TaleofTwoCitiesN.txt");
-   ifstream ifs("CharlesDickens-TaleofTwoCities.txt");
-   string content( (istreambuf_iterator<char>(ifs) ),
-                   (istreambuf_iterator<char>()    ));
+   ofstream dickensOut("DickensTable.txt");
+   ofstream austenOut("AustenTable.txt");
 
-   //cout << content << endl
-   outputFile << normalize(content);
-   outputFile.close();
+
+   string word;
+   int numDickensWords = 0; //576947
+   int numAustenWords = 0; //545533
+
+   while(dickens >> word)
+   {
+      finalHash[word]++;
+      numDickensWords++;
+   }
+   while(austen >> word)
+   {
+      finalHash[word]++;
+      numAustenWords++;
+   }
+
+   cout << "WORDS: " << endl;
+   cout <<  "Dickens: " << numDickensWords << endl;
+   cout <<  "Austen: " << numAustenWords << endl;
+
+   while(dickens >> word)
+   {
+      finalHash[word] = 1;
+   }
+   while(austen >> word)
+   {
+      finalHash[word] = 1;
+   }
+   austenHash = finalHash;
+   dickensHash = finalHash;
+
+   while(dickens >> word)
+   {
+      dickensHash[word]++;
+   }
+
+   while(austen >> word)
+   {
+      austenHash[word]++;
+   }
+
+   int numUnkDickens = 0;
+   int numUnkAusten = 0;
+
+
+   map<string, double>::iterator iter;
+
+   for(iter = dickensHash.begin(); iter != dickensHash.end(); ++iter)
+   {
+      if(iter->second == 2)
+      {
+         numUnkDickens++;
+         dickensHash.erase(iter);
+      }
+   }
+   dickensHash["<unk>"] = numUnkDickens;
+
+
+   for(iter = austenHash.begin(); iter != austenHash.end(); ++iter)
+   {
+      if(iter->second == 2)
+      {
+         numUnkAusten++;
+         austenHash.erase(iter);
+      }
+   }
+   austenHash["<unk>"] = numUnkAusten;
+
+   cout << "UNK" << endl;
+   cout << "Dickens: " << numUnkDickens << endl;
+   cout << "Austen: " << numUnkAusten << endl;
+
+   for(iter = dickensHash.begin(); iter != dickensHash.end(); ++iter)
+   {
+      iter->second = log(iter->second/numDickensWords);
+   }
+   for(iter = austenHash.begin(); iter != austenHash.end(); ++iter)
+   {
+      iter->second = log(iter->second/numAustenWords);
+   }
+
+   for(iter = dickensHash.begin(); iter != dickensHash.end(); ++iter)
+   {
+      dickensOut << iter->first << "," << iter->second << ",";
+   }
+   for(iter = austenHash.begin(); iter != austenHash.end(); ++iter)
+   {
+      austenOut << iter->first << "," << iter->second << ",";
+   }
    return 0;
 }
 
