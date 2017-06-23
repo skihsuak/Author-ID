@@ -405,7 +405,7 @@ impertinent </s>
 oh </s>
 <s>  cried jane with a blush and an hesitation which emma thought
 infinitely more becoming to her than all the elegance of all her usual
-composurethere would have been no danger </s>
+composurethere would have been no danger </s>h
 <s>  the danger would have
 been of my wearying you </s>
 <s>  you could not have gratified me more than
@@ -716,7 +716,7 @@ my emma he means no such thing </s>
 <s>  he only means
 
 he and i should differ very little in our estimation of the two
- interrupted she with a sort of serious smilemuch less perhaps than
+ interrupted she with a sort of serious smile much less perhaps than
 he is aware of if we could enter without ceremony or reserve on the
 subject </s>
 <s> 
