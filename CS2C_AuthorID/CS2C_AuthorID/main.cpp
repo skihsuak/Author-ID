@@ -124,10 +124,14 @@ int main()
 //   cout << "\'\"\\Aasdk;v123 fbe;ub ai;SJ D:FB U:WEOUFB?" << endl;
 //   cout << normalize("\'Aasdk;v123 fbe;ub ai;SJ D:FB U:WEOUFB?") << endl;
 
-   ifstream ifs("JaneAusten-PrideandPrejudice.txt");
+   ofstream outputFile("CharlesDickens-TaleofTwoCitiesN.txt");
+   ifstream ifs("CharlesDickens-TaleofTwoCities.txt");
    string content( (istreambuf_iterator<char>(ifs) ),
                    (istreambuf_iterator<char>()    ));
-   cout << normalize(content) << endl;
+
+   //cout << content << endl
+   outputFile << normalize(content);
+   outputFile.close();
    return 0;
 }
 
@@ -145,7 +149,7 @@ string normalize(string sInput)
    string s2 = " </s>\n<s> ";
    string s3 = " <abvr>";
    string s4 = " ";
-   replaceAll(s, s1, s4);
+   //replaceAll(s, s1, s4);
    s1 = "?";
    replaceAll(s, s1, s2);
    s1 = "!";
