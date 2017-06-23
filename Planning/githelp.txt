@@ -1,0 +1,3 @@
+how to use git:
+git commit -a -m "insert comment"
+git push origin master
